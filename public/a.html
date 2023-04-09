@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMO API</title>
+</head>
+
+<body>
+    <h1>Danh sách user</h1>
+
+    <textarea id="box-data" cols="100" rows="20"></textarea>
+
+    <script>
+
+        async function loadJSONData() {
+
+            let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDMxYTk1MmRiNmY5MzBiOGY5NzY4YjIiLCJ1c2VybmFtZSI6InZ1bmdudiIsImlhdCI6MTY4MDk3Njk4NX0.qvrdSNG9npLefJsScs9-8TnEkSK4Depq_SAz9LZc4H8';
+
+            let res = await fetch("http://localhost:3000/api/users"
+            , {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+            );
+            let data_json = await res.json();
+
+            document.querySelector('#box-data').innerHTML = JSON.stringify(data_json);
+
+        }
+        // gọi hàm:
+        loadJSONData();
+
+    </script>
+</body>
+
+</html>
