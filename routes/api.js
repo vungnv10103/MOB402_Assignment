@@ -4,11 +4,14 @@ var api_u = require('../controllers/api/user.api');
 var api_p = require('../controllers/api/product.api');
 var mdw = require('../middleware/api.auth');
 
-router.get('/users', mdw.api_auth, api_u.listUser); // ds u:  /api/users
+router.get('/users',  api_u.listUser); // ds u:  /api/users
 router.post('/users/login', api_u.login); // đăng nhập
 router.post('/users/reg', api_u.reg); // đăng ký
-router.get('/users/profile', mdw.api_auth, api_u.profile); // lấy thông tin user
-router.get('/users/logout', mdw.api_auth, api_u.logout); // đăng xuất
+router.get('/users/profile', api_u.profile); // lấy thông tin user
+router.get('/users/profile/:id', api_u.getProfile); // lấy thông tin user
+router.post('/users/profile/update/:username', api_u.updateProfile); // update user
+// router.get('/users/profile', mdw.api_auth, api_u.profile); // lấy thông tin user
+router.get('/users/logout', api_u.logout); // đăng xuất
 
 router.post('/add/product',  api_p.addProduct);  // thêm sản phẩm'
 router.get('/manage/product', api_p.listProduct);  // hiển thị sản phẩm

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<!-- Boxicons -->
+	<link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/public/css/main.css" />
+
+	<title>
+		<%= title %>
+	</title>
+</head>
+
+<body>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class="bx bxs-smile"></i>
+			<span class="text">
+				<%= title%>
+			</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="/main">
+					<i class="bx bxs-dashboard"></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bxs-shopping-bag-alt"></i>
+					<span class="text">My Store</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="bx bxs-doughnut-chart"></i>
+					<span class="text">Analytics</span>
+				</a>
+			</li>
+			<li>
+				<a href="../../api/manage/product">
+					<i class="bx bxs-pie-chart"></i>
+					<span class="text">Quản lí sản phẩm</span>
+				</a>
+			</li>
+			<li>
+				<a href="/api/users">
+					<i class="bx bxs-group"></i>
+					<span class="text">Quản lí người dùng</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="/api/users/profile">
+					<i class="bx bxs-bookmark"></i>
+					<span class="text">Profile</span>
+				</a>
+			</li>
+			<li>
+				<a href="/api/users/logout" class="logout">
+					<i class="bx bxs-log-out-circle"></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class="bx bx-menu"></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search..." />
+					<button type="submit" class="search-btn">
+						<i class="bx bx-search"></i>
+					</button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden />
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class="bx bxs-bell"></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="/public/images/chick.png" />
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>
+						<%= title%>
+					</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">
+								<%= title%>
+							</a>
+						</li>
+						<li><i class="bx bx-chevron-right"></i></li>
+						<li>
+							<!-- <a class="active" onclick="toggleForm()">Thêm</a> -->
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<section class="vh-100" style="background-color: #f4f5f7">
+				<div class="container py-5 h-100">
+					<div class="row d-flex justify-content-center align-items-center h-100">
+						<div class="col col-lg-6 mb-4 mb-lg-0">
+							<div class="card mb-3" style="border-radius: 0.5rem">
+								<div class="row g-0">
+									<div class="col-md-4 gradient-custom text-center text-white" style="
+                        border-top-left-radius: 0.5rem;
+                        border-bottom-left-radius: 0.5rem;
+                      ">
+										<img src="http://localhost:3000/public/images/chick.png" alt="Avatar"
+											class="img-fluid my-5" style="width: 80px" />
+										<h5>
+											<%= data.username%>
+										</h5>
+										<!-- <p>Web Designer</p> -->
+										<i class="far fa-edit mb-5"></i>
+									</div>
+									<div class="col-md-8">
+										<div class="card-body p-4">
+											<h6>Information</h6>
+											<hr class="mt-0 mb-4" />
+											<div class="row pt-1">
+												<div class="col-6 mb-3">
+													<h6>Email</h6>
+													<p class="text-muted">
+														<%= data.email %>
+													</p>
+												</div>
+												<div class="col-6 mb-3">
+													<h6>Phone</h6>
+													<p class="text-muted">123 456 789</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<button style="margin-left: 500px" class="btn btn-primary edit" data-id="<%= data.id %>">
+				Edit
+			</button>
+			<!-- Modal -->
+			<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="editModalLabel">Edit Profile</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="" method="post">
+								<div class="form-group">
+									<label for="">UserName</label>
+									<input type="text" name="username" id="eusername" class="form-control"
+										placeholder="" aria-describedby="helpId" />
+								</div>
+								<div class="form-group">
+									<label for="">Email</label>
+									<input type="text" name="email" id="eemail" class="form-control" placeholder=""
+										aria-describedby="helpId" />
+								</div>
+								<!-- <div class="form-group">
+									<label for="">Pass</label>
+									<input type="password" name="passwd" id="epasswd" class="form-control" placeholder=""
+										aria-describedby="helpId" />
+								</div> -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">
+										Cancel
+									</button>
+									<button type="submit" class="btn btn-primary" id="save-changes">
+										Save Changes
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+	<script src="/public/js/home.js"></script>
+</body>
+
+</html>
+<script>
+	$(document).ready(function () {
+		// Edit button click event
+		$(document).on("click", ".edit", function () {
+			// Get staff ID from button's data attribute
+			const idUser = $(this).data("id");
+
+			$.ajax({
+				url: "/api/users/profile/" + idUser,
+				method: "GET",
+				success: function (data) {
+					$("#eusername").val(data.data.username);
+					$("#eemail").val(data.data.email);
+					// $('#epasswd').val(data.data.passwd);
+
+					// Show the modal
+					$("#editModal").modal("show");
+				},
+				error: function () {
+					console.log("Error fetching staff data.");
+				},
+			});
+		});
+		$("#save-changes").click(function () {
+			// Get the updated data from the form inputs
+			var username = $("#eusername").val();
+			var email = $("#eemail").val();
+			// alert(email)
+			// Send the updated data to the server
+			$.ajax({
+				url: "/api/users/profile/update/" + username,
+				type: "POST",
+				success: function (data) {
+					// Handle the server's response here
+					// alert("Product updated successfully!");
+					$("#editModal").modal("hide");
+				},
+				error: function (xhr, status, error) {
+					// Handle the error here
+					alert(
+						"An error occurred while updating the product. Please try again later."
+					);
+				},
+			});
+		});
+	});
+</script>
